@@ -1,53 +1,44 @@
 import { useState } from "react";
 
+interface LoginFormProps {
+  FormHandle: React.Dispatch<React.SetStateAction<string>>;
+}
 
 
-export const LoginForm = ({setUsername}) => {
-  const [user, setUser] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState(false)
 
-  const handleSubmit = (e) => {
+export const LoginForm: React.FC<LoginFormProps> = ({ FormHandle }) =>{
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleLogin(e: React.FormEvent){
     e.preventDefault()
 
-    if (user == "" || password == "") {
-      setError(true)
-      return
-    }
-
-    setError(false)
-    setUsername([user])
+    if(!user || !password)return;
+    console.log(user, password)
+    setUser(" ")
+    setPassword(" ")
   }
+  
+  
+  return <div className="form-container"> 
+          <h2>SubastALL</h2>
+          <form onSubmit={handleLogin}>
+            <div className="form-controll">
+              <input type="text" 
+                     placeholder="Ingresa tu Email" 
+                     onChange={(e)=>setUser(e.target.value)}
+                     value={user}/>
+            </div>
 
-  return (
-    <section>
-      <h1>Login</h1>
-      <form
-        className="loginForm"
-        onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input type="text"
-            name="username"
-            value={user}
-            onChange={e => setUser(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password"
-            name="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)} />
-        </label>
-        <br />
-        <button type="submit">Login</button>
-      </form>
-      {error && <p>Todos los campos son requeridos</p>}
-    </section>
-  );
-
-};
-
-
-export default LoginForm;
+            <div className="form-controll">
+              <input type="password" 
+                     placeholder="Ingresa tu Contrasena" 
+                     onChange={(e)=>setPassword(e.target.value)}
+                     value={password}/>
+            </div>
+          
+            <button onClick={handleLogin}>Iniciar Sesion</button>
+          </form>
+          <p onClick={()=> FormHandle('SignUp')}>No tienes cuenta? registrate aqui</p>
+         </div>
+}

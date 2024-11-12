@@ -1,25 +1,20 @@
-import './App.css'
-import LoginForm from './components/LoginForm/LoginForm';
-import Home from './components/Home/Home';
 import { useState } from 'react';
+import './App.css'
+import {LoginForm} from './components/LoginForm/LoginForm';
+import { SignUpForm } from './components/SignUp/SignUp';
+//import Home from './components/Home/Home';
+//import { useState } from 'react';
 
 
 function App() {  
-  const[username, setUsername] = useState([])
+  const [form, setForm] = useState("login");
   
   return (
-    <div className='App'>
-
-
-      {
-        !(username.length > 0)
-        ? <LoginForm setUsername = {setUsername}/>
-        :<Home />
-      }
-      
- 
-    </div>
-  )
+    <>
+    {form == "login" ? (<LoginForm FormHandle = {setForm}/>):
+    (<SignUpForm FormHandle = {setForm} />) }
+    </>
+  );
 }
 
 export default App
