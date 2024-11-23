@@ -1,5 +1,6 @@
+import { Navbar } from "../Navbar/Navbar";
+import CarruselSubastas from '../CarruselSubastas/CarruselSubasta';
 
-import { Navbar } from "../Navbar/Navbar"; 
 
 export function HomePage() {
   return (
@@ -8,7 +9,6 @@ export function HomePage() {
       <div className="fixed top-0 left-0 w-full bg-red-800 text-white shadow-md">
         <Navbar />
       </div>
-      
 
       {/* Hero Section */}
       <section className="bg-[#5E1616] text-white py-12 px-4">
@@ -38,33 +38,13 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Productos en Subasta */}
+      {/* Productos en Subasta - Carrusel */}
       <section className="bg-white py-12">
         <div className="container mx-auto">
           <h2 className="text-2xl font-bold text-center mb-8">
             Productos en Subasta Activa
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {[...Array(8)].map((_, index) => (
-              <div
-                key={index}
-                className="border rounded-lg shadow-sm hover:shadow-md overflow-hidden"
-              >
-                <img
-                  src={`https://via.placeholder.com/150?text=Producto+${index + 1}`}
-                  alt={`Producto ${index + 1}`}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-4">
-                  <h3 className="font-medium text-lg">Producto {index + 1}</h3>
-                  <p className="text-gray-600">Última oferta: $50</p>
-                  <button className="mt-4 bg-[#D3B088] text-[#5E1616] px-4 py-2 rounded-lg font-medium hover:bg-[#c6a076]">
-                    Subastar
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+          <CarruselSubastas />
         </div>
       </section>
 
