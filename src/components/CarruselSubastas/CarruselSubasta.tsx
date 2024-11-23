@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper';
+import 'swiper/swiper-bundle.css';
 import 'swiper';
 
 import SubastaCard from '../subasta/SubastaCard';
@@ -29,6 +29,28 @@ export const CarruselSubastas = () => {
       label: 'Envío gratis',
       timeLeft: '02:15:40',
       onBid: () => console.log('Bid placed on Samsung Galaxy S20'),
+    },
+    {
+      id: 3,
+      title: 'Trin Galaxy S20',
+      description:
+        'Con una pantalla de 6.2 pulgadas y cámaras increíbles, el Galaxy S20 redefine lo que esperas de un smartphone.',
+      image: 'ruta_a_imagen_galaxy.jpg',
+      price: '1,200,000 COP',
+      label: 'Envío gratis',
+      timeLeft: '02:15:40',
+      onBid: () => console.log('Bid placed on trin Galaxy S20'),
+    },
+    {
+      id: 2,
+      title: 'tran Galaxy S20',
+      description:
+        'Con una pantalla de 6.2 pulgadas y cámaras increíbles, el Galaxy S20 redefine lo que esperas de un smartphone.',
+      image: 'ruta_a_imagen_galaxy.jpg',
+      price: '1,200,000 COP',
+      label: 'Envío gratis',
+      timeLeft: '02:15:40',
+      onBid: () => console.log('Bid placed on tran Galaxy S20'),
     },
     // Agrega más subastas si es necesario
   ];
