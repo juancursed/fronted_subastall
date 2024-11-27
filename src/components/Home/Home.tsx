@@ -1,8 +1,15 @@
 import { Navbar } from "../Navbar/Navbar";
 import CarruselSubastas from '../CarruselSubastas/CarruselSubasta';
-
+//import { useNavigate } from 'react-router-dom';  
 
 export function HomePage() {
+  //const navigate = useNavigate(); // Usamos el hook de navegación
+
+  //const handleButtonClick = () => {
+    // Redirigimos a la página de subastas
+  //  navigate('/subastas');
+  //};
+
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Navbar */}
@@ -17,7 +24,8 @@ export function HomePage() {
           <p className="text-lg mb-6">
             Participa en subastas únicas y encuentra los mejores productos al mejor precio.
           </p>
-          <button className="bg-[#D3B088] text-[#5E1616] px-6 py-3 rounded-lg font-medium hover:bg-[#c6a076]">
+          <button
+          className="bg-[#D3B088] text-[#5E1616] px-6 py-3 rounded-lg font-medium hover:bg-[#c6a076]">
             Comienza a Subastar
           </button>
         </div>
