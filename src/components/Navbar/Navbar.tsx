@@ -1,6 +1,15 @@
-import React from "react";
+// Navbar.tsx
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
+  const navigate = useNavigate();  // Usamos el hook de navegación para redirigir
+
+  // Función para manejar el inicio de sesión
+  const handleLogin = () => {
+    navigate('/login');  // Redirigir a la página de login
+  };
+
   return (
     <nav className="bg-red-800 text-white shadow-md fixed top-0 w-full z-50">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -25,7 +34,8 @@ export const Navbar: React.FC = () => {
 
         {/* Login Button */}
         <div>
-          <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg transition duration-300 ease-in-out">
+          <button onClick={handleLogin}
+            className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg transition duration-300 ease-in-out">
             Login
           </button>
         </div>
