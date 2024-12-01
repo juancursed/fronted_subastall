@@ -28,27 +28,66 @@ const LoginForm = () => {
   // };
 
   return (
-    <div className="form-container"> 
-          <h2>SubastALL</h2>
-          <form onSubmit={handleLogin}>
-            <div className="form-controll">
-              <input type="text" 
-                     placeholder="Ingresa tu Email" 
-                     onChange={(e)=>setUser(e.target.value)}
-                     value={username}/>
-            </div>
-
-            <div className="form-controll">
-              <input type="password" 
-                     placeholder="Ingresa tu Contrasena" 
-                     onChange={(e)=>setPassword(e.target.value)}
-                     value={password}/>
-            </div>
-          
-            <button onClick={handleLogin}>Iniciar Sesion</button>
-          </form>
-          {/* <p onClick={()=> FormHandle('SignUp')}>No tienes cuenta? registrate aqui</p> */}
-         </div>
+    <div className="flex h-screen items-center justify-center bg-gradient-to-r from-red-400 to-red-800">
+      <div className="bg-[#E3CDA4] rounded-lg shadow-lg p-8 w-96">
+        <h2 className="text-2xl font-semibold text-center mb-6 text-brown-800">
+          SubastALL <span className="text-xl">🔨</span>
+        </h2>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <div>
+            <input
+              type="email"
+              placeholder="Correo Electrónico"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
+              onChange={(e) => setUser(e.target.value)}
+              value={username}
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+          </div>
+          <div className="text-right text-sm text-red-600">
+            <a href="#" className="hover:underline">
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition"
+          >
+            Iniciar Sesión
+          </button>
+        </form>
+        <div className="text-center mt-4">
+          <p className="text-sm">O inicia también con:</p>
+          <div className="flex justify-center space-x-4 mt-2">
+            <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition">
+              Google
+            </button>
+            <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition">
+              Apple ID
+            </button>
+            <button className="bg-gray-200 p-2 rounded-full hover:bg-gray-300 transition">
+              Facebook
+            </button>
+          </div>
+        </div>
+        <div className="text-center mt-6">
+          <a
+            href="#"
+            className="text-sm text-red-600 hover:underline font-medium"
+          >
+            Crear cuenta nueva
+          </a>
+        </div>
+      </div>
+    </div>
   );
 };
 
