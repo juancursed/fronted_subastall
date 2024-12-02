@@ -20,7 +20,7 @@ const LoginForm = () => {
       const credenciales: Credentials = { username, password };
       const token = await login(credenciales);
       console.log('Token recibido:', token);
-      authenticate(token)
+      authenticate(token, username)
       navigate('/'); // Redirigir a la página principal
       
     } catch (err: any) {
