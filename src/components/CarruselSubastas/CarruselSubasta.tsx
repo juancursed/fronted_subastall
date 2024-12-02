@@ -43,7 +43,7 @@ export const CarruselSubastas = () => {
       onBid: () => console.log('Bid placed on trin Galaxy S20'),
     },
     {
-      id: 2,
+      id: 4,
       title: 'tran Galaxy S20',
       description:
         'Con una pantalla de 6.2 pulgadas y cámaras increíbles, el Galaxy S20 redefine lo que esperas de un smartphone.',

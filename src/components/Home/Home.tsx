@@ -19,7 +19,7 @@ export function HomePage() {
 
       {/* Hero Section */}
       <section className="bg-[#5E1616] text-white py-12 px-4">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto text-center pt-16">
           <h1 className="text-4xl font-bold mb-4">¡Bienvenido a SubastALL!</h1>
           <p className="text-lg mb-6">
             Participa en subastas únicas y encuentra los mejores productos al mejor precio.

@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 // import { login, logout, getToken } from '../../services/auth/loginService';
 import { login } from '../../services/auth/loginService';
 import { Credentials } from '../../types/Auth';
+import { useAuth } from '../../types/AuthContext';
+import { Navigate, useNavigate } from 'react-router-dom';
+
 
 
 const LoginForm = () => {
   const [username, setUser] = useState('');
   const [password, setPassword] = useState('');
+  const { login: authenticate } = useAuth();
+  const navigate = useNavigate();
   //const [error, setError] = useState('');
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -15,9 +20,10 @@ const LoginForm = () => {
       const credenciales: Credentials = { username, password };
       const token = await login(credenciales);
       console.log('Token recibido:', token);
-      // setError('');
+      authenticate(token)
+      navigate('/'); // Redirigir a la página principal
+      
     } catch (err: any) {
-      // setError(err.message);
       console.log(err.message);
     }
   };
@@ -36,7 +42,7 @@ const LoginForm = () => {
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <input
-              type="email"
+              type="text"
               placeholder="Correo Electrónico"
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
               onChange={(e) => setUser(e.target.value)}

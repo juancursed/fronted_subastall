@@ -16,7 +16,7 @@ export const SignUpForm: React.FC<LoginFormProps> = () =>{
   const [password, setPassword] = useState('');
   const [country, setCountry] = useState('');
   const [date, setDate] = useState('');
-  const [gender, setGender] = useState('');
+  const [genter, setGender] = useState('');
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,7 +56,7 @@ export const SignUpForm: React.FC<LoginFormProps> = () =>{
           </div>
           <div className="form-controll">
             <input
-              type="email"
+              type="Text"
               placeholder="Ingresa tu Email"
               onChange={(e) => setUsername(e.target.value)}
               value={username}
@@ -97,7 +97,7 @@ export const SignUpForm: React.FC<LoginFormProps> = () =>{
               name="gender"
               required
               onChange={(e) => setGender(e.target.value)}
-              value={gender}
+              value={genter}
               className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
             >
               <option value="">Género</option>
