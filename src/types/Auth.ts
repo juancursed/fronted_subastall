@@ -21,3 +21,21 @@ export interface User {
     country: string;
     token: string;
 }
+
+
+export interface Subasta {
+    id: number;
+    nombre: string;
+    descripcion: string;
+    fotos: string[];
+    precioActual: number;
+    precioInicial: number;
+    fechaCreacion: string;
+    fechaCierre: string;
+    estado: string;
+    usuario_subasta: {
+      firstname: string;
+      lastname: string;
+      country: string;
+  }
+}

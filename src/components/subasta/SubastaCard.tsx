@@ -23,7 +23,7 @@ interface subastaCardProps {
   onBid: () => void;
 }
 
-export const subastaCard: React.FC<subastaCardProps> = ({
+export const SubastaCard: React.FC<subastaCardProps> = ({
   nombre,
   descripcion,
   fotos,
@@ -62,4 +62,4 @@ export const subastaCard: React.FC<subastaCardProps> = ({
   );
 };
 
-export default subastaCard;
+export default SubastaCard;
