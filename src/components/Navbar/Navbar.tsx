@@ -14,13 +14,17 @@ export const Navbar: React.FC = () => {
     navigate('/login');  // Redirigir a la página de login
   };
 
+  const toHome = () => {
+    navigate('/');
+  }
+
   return (
     <nav className="bg-red-800 text-white shadow-md fixed top-0 w-full z-50">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <span className="bg-yellow-600 p-2 rounded-full">
-            <span role="img" aria-label="Icono">
+            <span role="img" aria-label="Icono" onClick={toHome}>
               🏷️
             </span>
           </span>

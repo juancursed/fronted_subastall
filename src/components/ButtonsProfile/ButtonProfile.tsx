@@ -10,6 +10,9 @@ export const ButtonProfile: React.FC = () => {
     const toggleMenu = () => {
         setIsMenuVisible(!isMenuVisible);
     };
+    const toProfile = () => {
+        navigate('/Profile');
+    }
 
 
     return (
@@ -30,6 +33,7 @@ export const ButtonProfile: React.FC = () => {
                 <li
                         role="menuitem"
                         className="cursor-pointer text-slate-800 text-sm flex w-full items-center rounded-md p-3 transition-all hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100"
+                        onClick={toProfile}
                     >
                         {user?.username}
                 </li>
