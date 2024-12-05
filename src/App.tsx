@@ -12,13 +12,13 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          {/* Ruta para la página principal (HomePage) */}
+          {/* Ruta para la página principal (HomePage)*/}
           <Route path="/" element={<HomePage />} />
 
-          {/* Ruta para la página de login */}
+          {/* Ruta para la página de login*/}
           <Route path="/login" element={<LoginForm />} />
 
-          {/* Ruta para la página de Registro */}
+          {/* Ruta para la página de Registro*/}
           <Route path="/SignUp" element={<SignUp />} />
 
           <Route path='/Profile' element={<Profile />} />
