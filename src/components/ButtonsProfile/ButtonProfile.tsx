@@ -4,7 +4,8 @@ import { useAuth } from '../../types/AuthContext';
 
 export const ButtonProfile: React.FC = () => {
     const navigate = useNavigate();  // Usamos el hook de navegación para redirigir
-    const { token, user, logout } = useAuth();
+    //const { token, user, logout } = useAuth();
+    const {  user, logout } = useAuth();
     const [isMenuVisible, setIsMenuVisible] = useState(false);
 
     const toggleMenu = () => {

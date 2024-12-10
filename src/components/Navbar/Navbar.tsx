@@ -7,7 +7,8 @@ import { ButtonProfile } from '../ButtonsProfile/ButtonProfile';
 
 export const Navbar: React.FC = () => {
   const navigate = useNavigate();  // Usamos el hook de navegación para redirigir
-  const { token, logout } = useAuth();
+  //const { token, logout } = useAuth();
+  const { token } = useAuth();
 
   // Función para manejar el inicio de sesión
   const handleLogin = () => {

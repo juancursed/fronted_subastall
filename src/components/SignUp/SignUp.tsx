@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import { register } from '../../services/auth/loginService';
 import { RegisterRequest } from '../../types/Auth';
 
-interface LoginFormProps {
-  FormHandle: React.Dispatch<React.SetStateAction<string>>;
-}
+// interface LoginFormProps {
+//   FormHandle: React.Dispatch<React.SetStateAction<string>>;
+// }
 
 
 // export const SignUpForm: React.FC<LoginFormProps> = ({ FormHandle }) =>{
-export const SignUpForm: React.FC<LoginFormProps> = () =>{
+const SignUpForm = () =>{
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [username, setUsername] = useState('');
