@@ -73,7 +73,7 @@ export const CarruselSubastas = () => {
                 fechaCreacion={subasta.fechaCreacion} // Fecha de creación
                 estado={subasta.estado} // Estado de la subasta
                 usuario_subasta={subasta.usuario_subasta} // Usuario de la subasta
-                label="USD" // Etiqueta fija para la moneda
+                label="Ultima puja" // Etiqueta fija para la moneda
                 fechaCierre={subasta.fechaCierre} // Fecha de cierre como cuenta regresiva
                 onBid={() => console.log(`Puja realizada en ${subasta.nombre}`)} // Acción al pujar
               />
