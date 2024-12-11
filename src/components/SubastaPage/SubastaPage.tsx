@@ -121,7 +121,7 @@ export const SubastaPage: React.FC = () => {
                                 fechaCierre={subasta.fechaCierre}
                                 estado={subasta.estado}
                                 usuario_subasta={subasta.usuario_subasta}
-                                label="USD"
+                                label="Ultima puja"
                                 onBid={() => console.log(`Puja realizada en ${subasta.nombre}`)}
                             />
                         ))

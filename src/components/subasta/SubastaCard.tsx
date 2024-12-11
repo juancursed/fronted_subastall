@@ -55,31 +55,36 @@ export const SubastaCard: React.FC<subastaCardProps> = ({
 
 
   return (
-    <div className="border rounded-lg shadow-lg p-4 max-w-sm bg-white">
+    <div className="border rounded-lg shadow-lg p-4 w-64 h-90 bg-white flex flex-col">
 
-      <div className="relative">
+      <div className="h-40 flex items-center justify-center bg-gray-100">
       <img
           src={`${API_BASE_URL}${fotos[0]}`} // Concatenamos la URL base con el nombre del archivo
           alt={nombre}
-          className="w-full rounded-t-lg"
+          className="bg-white h-full w-full object-contain rounded-t-lg"
         />
-        <div className="absolute top-2 right-2 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded">
+        <div className="absolute top-2 left-2 bg-red-500 text-white text-sm font-bold px-2 py-1 rounded">
           {timeRemaining}
         </div>
       </div>
 
-      <div className="p-4">
-        <h2 className="text-lg font-bold">{nombre}</h2>
-        <p className="text-gray-600 text-sm my-2">{descripcion}</p>
-        <div className="text-xl font-bold text-gray-800">
-          {precioActual} <span className="text-green-500 text-sm">{label}</span>
+      <div className="p-4 flex-grow">
+        <h2 className="text-lg font-semibold text-gray-800">{nombre}</h2>
+        <p className="text-sm text-gray-600 mt-2 line-clamp-3">
+          {descripcion}
+        </p>
+        <div className="mt-4">
+          <p className="text-xl font-bold text-gray-800">
+            ${precioActual} <span className="text-green-600 text-sm">{label}</span>
+          </p>
+          <p className="text-sm text-green-500 mt-1">Envío gratis</p>
         </div>
       </div>
 
 
       <button
         onClick={onBid}
-        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
       >
         Puja ahora
       </button>
