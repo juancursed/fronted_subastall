@@ -9,6 +9,7 @@ import {  useNavigate } from 'react-router-dom';
 
 
 const LoginForm = () => {
+  const toHome = () => {navigate('/');}
   const [username, setUser] = useState('');
   const [password, setPassword] = useState('');
   const { login: authenticate } = useAuth();
@@ -37,6 +38,9 @@ const LoginForm = () => {
   return (
     <div className="flex h-screen items-center justify-center bg-gradient-to-r from-red-400 to-red-800">
       <div className="bg-[#E3CDA4] rounded-lg shadow-lg p-8 w-96">
+        <span className="bg-yellow-600 p-2 rounded-full">
+            <span role="img" aria-label="Icono" onClick={toHome}>🏷️</span>
+          </span>
         <h2 className="text-2xl font-semibold text-center mb-6 text-brown-800">
           SubastALL <span className="text-xl">🔨</span>
         </h2>

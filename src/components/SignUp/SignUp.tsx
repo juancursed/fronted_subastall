@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 // export const SignUpForm: React.FC<LoginFormProps> = ({ FormHandle }) =>{
 const SignUpForm = () =>{
+  const toHome = () => {navigate('/');}
   const navigate = useNavigate();
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -36,6 +37,9 @@ const SignUpForm = () =>{
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-red-400 to-red-800" /*style={{ backgroundImage: 'url("/path/to/your/background.jpg")', backgroundSize: 'cover' }}*/>
       <div className="bg-[#E3CDA4] rounded-lg shadow-lg p-8 w-full max-w-md">
+      <span className="bg-yellow-600 p-2 rounded-full">
+            <span role="img" aria-label="Icono" onClick={toHome}>🏷️</span>
+          </span>
       <h2 className="text-2xl font-semibold text-center mb-6 text-brown-800">
           SubastALL <span className="text-xl">🔨</span>
         </h2>
