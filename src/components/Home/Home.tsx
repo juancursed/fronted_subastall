@@ -12,8 +12,7 @@ export function HomePage() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Navbar */}
-      <div className="fixed top-0 left-0 w-full bg-red-800 text-white shadow-md">
+      <div className="sticky top-0 z-50 fixed top-0 left-0 w-full bg-red-800 text-white shadow-md">
         <Navbar />
       </div>
 
