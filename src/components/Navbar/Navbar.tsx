@@ -43,24 +43,30 @@ export const Navbar: React.FC = () => {
 
         {/* Botón Login o Iconos de Usuario */}
         <div className="flex items-center space-x-4">
-          {!token ? (
-            <button
-              onClick={handleLogin}
-              
-              className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg transition duration-300 ease-in-out">
-              Login
-            </button>
-          ) : (
-            <>
-              {/* Icono de Notificaciones */}
-              <button className="p-2 rounded-full hover:bg-red-700 transition duration-300">
-                <span role="img" aria-label="Notificaciones">🔔</span>
-              </button>
-              {/* Icono de Perfil */}
-              <ButtonProfile />
-            </>
-          )}
-        </div>
+  {!token ? (
+    <>
+      <button
+        onClick={handleLogin}
+        className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-lg transition duration-300 ease-in-out">
+        Login
+      </button>
+      <button
+        onClick={() => navigate('/SignUp')}
+        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-300 ease-in-out">
+        SignUp
+      </button>
+    </>
+  ) : (
+    <>
+      {/* Icono de Notificaciones */}
+      <button className="p-2 rounded-full hover:bg-red-700 transition duration-300">
+        <span role="img" aria-label="Notificaciones">🔔</span>
+      </button>
+      {/* Icono de Perfil */}
+      <ButtonProfile />
+    </>
+  )}
+</div>
       </div>
     </nav>
   );

@@ -89,6 +89,7 @@ const LoginForm = () => {
           <a
             href="#"
             className="text-sm text-red-600 hover:underline font-medium"
+            onClick={() => navigate('/SignUp')}
           >
             Crear cuenta nueva
           </a>

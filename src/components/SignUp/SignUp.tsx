@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { register } from '../../services/auth/loginService';
 import { RegisterRequest } from '../../types/Auth';
+import { useNavigate } from 'react-router-dom';
 
 // interface LoginFormProps {
 //   FormHandle: React.Dispatch<React.SetStateAction<string>>;
@@ -10,6 +11,7 @@ import { RegisterRequest } from '../../types/Auth';
 
 // export const SignUpForm: React.FC<LoginFormProps> = ({ FormHandle }) =>{
 const SignUpForm = () =>{
+  const navigate = useNavigate();
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [username, setUsername] = useState('');
@@ -32,8 +34,11 @@ const SignUpForm = () =>{
   };
 
   return (
-    <div className="h-screen bg-red-300 flex items-center justify-center" style={{ backgroundImage: 'url("/path/to/your/background.jpg")', backgroundSize: 'cover' }}>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-red-400 to-red-800" /*style={{ backgroundImage: 'url("/path/to/your/background.jpg")', backgroundSize: 'cover' }}*/>
       <div className="bg-[#E3CDA4] rounded-lg shadow-lg p-8 w-full max-w-md">
+      <h2 className="text-2xl font-semibold text-center mb-6 text-brown-800">
+          SubastALL <span className="text-xl">🔨</span>
+        </h2>
         <h2 className="text-center text-2xl font-bold mb-4">Crear Cuenta</h2>
         <form onSubmit={handleRegister} className="space-y-4">
           <div className="form-controll">
@@ -115,7 +120,9 @@ const SignUpForm = () =>{
         </form>
         <p className="text-center mt-4 text-sm text-gray-600">
           ¿Ya tienes cuenta?{" "}
-          <span className="text-yellow-700 cursor-pointer underline">
+          <span 
+            onClick={() => navigate('/login')}
+            className="text-yellow-700 cursor-pointer underline">
             Inicia sesión aquí
           </span>
         </p>

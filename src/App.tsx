@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HomePage } from './components/Home/Home';
 import LoginForm  from './components/LoginForm/LoginForm'; // Asegúrate de crear este componente
-import SignUp from './components/SignUp/SignUp'
+import SignUp from './components/SignUp/SignUp';
 import {Profile} from './components/Profile/Profile';
 import { SubastaPage } from './components/SubastaPage/SubastaPage'
 import { AuthProvider } from './types/AuthContext';
