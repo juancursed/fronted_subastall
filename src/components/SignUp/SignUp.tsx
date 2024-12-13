@@ -27,9 +27,8 @@ const SignUpForm = () =>{
       const credenciales: RegisterRequest = { username, password, firstname, lastname,country,date,genter};
       const mensaje = await register(credenciales);
       console.log('salida:', mensaje);
-      // setError('');
+   
     } catch (err: any) {
-      // setError(err.message);
       console.log(err.message);
     }
   };
@@ -66,7 +65,7 @@ const SignUpForm = () =>{
           <div className="form-controll">
             <input
               type="Text"
-              placeholder="Ingresa tu Email"
+              placeholder="Ingresa tu Username"
               onChange={(e) => setUsername(e.target.value)}
               value={username}
               className="w-full px-4 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"

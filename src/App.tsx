@@ -6,6 +6,7 @@ import SignUp from './components/SignUp/SignUp';
 import {Profile} from './components/Profile/Profile';
 import { SubastaPage } from './components/SubastaPage/SubastaPage'
 import { AuthProvider } from './types/AuthContext';
+import  CrearSubasta  from './components/Pages/CrearSubasta/CrearSubasta';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
           <Route path='/Profile' element={<Profile />} />
 
           <Route path="/subastas" element={<SubastaPage />} />
+
+          <Route path="/addSubasta" element={<CrearSubasta />} />
 
         </Routes>
       </BrowserRouter>

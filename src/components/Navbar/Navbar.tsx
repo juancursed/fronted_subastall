@@ -15,6 +15,10 @@ export const Navbar: React.FC = () => {
     navigate('/login');  // Redirigir a la página de login
   };
 
+  const toAddSubasta = () => {
+    navigate('/addSubasta');
+  }
+
   const toHome = () => {
     navigate('/');
   }
@@ -58,6 +62,9 @@ export const Navbar: React.FC = () => {
     </>
   ) : (
     <>
+      <button className="p-2 rounded-full hover:bg-red-700 transition duration-300" onClick={toAddSubasta}>
+        <span role="img" aria-label="Crear Subasta">➕</span>
+      </button>
       {/* Icono de Notificaciones */}
       <button className="p-2 rounded-full hover:bg-red-700 transition duration-300">
         <span role="img" aria-label="Notificaciones">🔔</span>
