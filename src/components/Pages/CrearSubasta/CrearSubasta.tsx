@@ -17,12 +17,32 @@ const CrearSubasta = () => {
             return;
         }
         console.log({
+
             titulo,
             descripcion,
+            imagen,
             precioInicial,
             fechaCierre,
         });
     };
+
+    const previewImage = (file: File) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setImagen(reader.result as string);
+        };
+    }
+
+    const validarFecha = (fecha: string) => {
+    const now = new Date();
+      const cierre = new Date(fecha);
+      const diff = cierre.getTime() - now.getTime()
+
+      if (diff <= 0) return "Fecha invalida";
+      else setFechaCierre(fecha);
+
+    }
 
     return (
         <div className="bg-[#FFF] p-8">
@@ -56,8 +76,9 @@ const CrearSubasta = () => {
                     <input
                         type="file"
                         accept="image/*"
-                        //onChange={manejarSeleccionImagen}
+                        onChange={(e) => previewImage(e.target.files![0])}
                         className=""
+                        
                     />
                 </div>
 
@@ -109,7 +130,7 @@ const CrearSubasta = () => {
                             <input
                                 type="date"
                                 value={fechaCierre}
-                                onChange={(e) => setFechaCierre(e.target.value)}
+                                onChange={(e) => validarFecha(e.target.value)}
                                 required
                                 className="w-full bg-[#FFF] text-black rounded-lg p-2 shadow-inner"
                             />
