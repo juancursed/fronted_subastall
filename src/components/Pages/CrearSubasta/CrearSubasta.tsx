@@ -37,10 +37,10 @@ const CrearSubasta = () => {
 
         // Construye el objeto de subasta
         const nuevaSubasta = {
-            nombre,
-            descripcion,
+            nombre: nombre,
+            descripcion: descripcion,
             precioInicial: parseFloat(precioInicial),
-            fotos,
+            fotos:[fotos],
             fechaCierre: convertirFecha(fechaCierre, horaCierre),
         };
 
@@ -48,8 +48,6 @@ const CrearSubasta = () => {
             const resultado = await addSubasta(nuevaSubasta, token);
             console.log('Subasta agregada exitosamente:', resultado);
             alert('Subasta creada correctamente');
-
-
             setNombre('');
             setDescripcion('');
             setPrecioInicial('');
