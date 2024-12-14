@@ -38,24 +38,23 @@ export const addSubasta = async (subasta: object, token : string) => {
     const API_URL = 'http://localhost:8080/api/subasta/agregar';
 
     try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify(subasta),
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Error en la solicitud: ${response.statusText}`);
-      }
-  
-      const data = await response.json(); // Asume que el servidor responde con JSON
-      return data;
+        // Log para ver el objeto enviado
+        console.log(JSON.stringify(subasta));
+
+        // Realiza la solicitud POST con axios
+        const response = await axios.post(API_URL, subasta, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        // Retorna los datos recibidos del servidor
+        return response.data;
     } catch (error) {
-      console.error('Error al agregar subasta:', error);
-      throw error; // Re-lanza el error para manejarlo en el componente
-  }
+        // Manejo de errores: muestra el mensaje y re-lanza
+        console.error('Error al agregar subasta:', error);
+        //throw error.response?.data || new Error('Error al realizar la solicitud');
+    }
 }
 

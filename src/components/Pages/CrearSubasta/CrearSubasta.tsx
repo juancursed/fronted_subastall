@@ -18,12 +18,14 @@ const CrearSubasta = () => {
     //----------Traer al token del localStorage----------------
     useEffect(() => {
         const token = localStorage.getItem("authToken"); // Obtén el token desde el localStorage
+        token?.toString();
         if (!token) {
             setError("No estás autenticado.");
             setLoading(false);
             return;
         }
 
+        
         setToken(token);
     }, []);
 
@@ -75,7 +77,8 @@ const CrearSubasta = () => {
         const cierre = new Date(fecha);
         const diff = cierre.getTime() - now.getTime()
 
-        if (diff <= 0) return "Fecha invalida";
+        console.log(diff)
+        if (diff < 0) return "Fecha invalida";
         else setFechaCierre(fecha);
 
     }
