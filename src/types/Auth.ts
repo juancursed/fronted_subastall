@@ -38,4 +38,8 @@ export interface Subasta {
       lastname: string;
       country: string;
   }
+
+  
+
 }
+
