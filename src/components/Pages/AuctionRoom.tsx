@@ -17,7 +17,7 @@ const SubastaPage: React.FC = () => {
   const [fechaCierre, setFechaCierre] = useState("");
   const [horaCierre, setHoraCierre] = useState("");
   const [fotos, setFotos] = useState("");
-  
+
   const API_BASE_URL = "http://127.0.0.1:8080/api/subasta/foto/";
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const SubastaPage: React.FC = () => {
     fetchSubasta();
   }, [id]);
 
-//----------IGNORAR----------------
+  //----------IGNORAR----------------
   const [subastaData, setSubastaData] = useState({
     producto: {
       nombre: "Producto Ejemplo",
@@ -89,60 +89,61 @@ const SubastaPage: React.FC = () => {
       {/* Contenedor principal */}
       <div className="flex flex-col flex-grow mt-16">
 
-        <div className="flex justify-between p-4 space-x-4">
+      <div className="flex justify-between p-4 space-x-4 h-full">
 
-          {/* Contenedor izquierdo: ProductInfo y Chat */}
-          <div className="flex flex-col w-1/2 space-y-4"> 
-            <div className="bg-white rounded-lg shadow-md flex-shrink-0">
-              <ProductInfo
-                nombre={nombre}
-                descripcion={descripcion}
-                imagen={`${API_BASE_URL}${fotos[0]}`}
-              />
-            </div>
-            
-            {/* Chat Público */}
-            <div className="flex-1 -py-20 bg-white border rounded-md p-4 flex flex-col overflow-hidden">
-              <h2 className="text-xl font-bold mb-2">Chat Público</h2>
-              <div className="flex-1 overflow-auto space-y-2">
-                {subastaData.mensajesChat.map((msg, index) => (
-                  <p key={index} className="text-gray-700">
-                    <span className="font-bold">{msg.usuario}: </span>
-                    {msg.mensaje}
-                  </p>
-                ))}
-              </div>
-              <div className="mt-2 flex">
-                <input
-                  type="text"
-                  placeholder="Escribe un mensaje..."
-                  value={nuevoMensaje}
-                  onChange={(e) => setNuevoMensaje(e.target.value)}
-                  className="w-full p-2 border rounded-l-md"
-                />
-                <button
-                  onClick={enviarMensaje}
-                  className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700"
-                >
-                  Enviar
-                </button>
-              </div>
-            </div>
-          </div>
+{/* Contenedor izquierdo: ProductInfo y Chat */}
+<div className="flex flex-col w-1/2 space-y-4 h-full">
+  {/* ProductInfo */}
+  <div className="bg-white rounded-lg shadow-md flex-shrink-0">
+    <ProductInfo
+      nombre={nombre}
+      descripcion={descripcion}
+      imagen={`${API_BASE_URL}${fotos[0]}`}
+    />
+  </div>
 
-          {/* Contenedor derecho: Contador y Lista de Pujas */}
-          <div className="flex flex-col w-1/2 space-y-4">
-            
-            {/* Contador de la Subasta */}
-            <div className="h-40 bg-gray-200 rounded-lg shadow-md flex flex-col justify-center">
-              <ContadorInfo id={Number(id)} />
-            </div>
+  {/* Chat Público */}
+  <div className="flex flex-col flex-grow bg-white border rounded-md p-4 overflow-hidden">
+    <h2 className="text-xl font-bold mb-2">Chat Público</h2>
+    <div className="flex-1 overflow-auto space-y-2">
+      {subastaData.mensajesChat.map((msg, index) => (
+        <p key={index} className="text-gray-700">
+          <span className="font-bold">{msg.usuario}: </span>
+          {msg.mensaje}
+        </p>
+      ))}
+    </div>
+    <div className="mt-2 flex">
+      <input
+        type="text"
+        placeholder="Escribe un mensaje..."
+        value={nuevoMensaje}
+        onChange={(e) => setNuevoMensaje(e.target.value)}
+        className="w-full p-2 border rounded-l-md"
+      />
+      <button
+        onClick={enviarMensaje}
+        className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700"
+      >
+        Enviar
+      </button>
+    </div>
+  </div>
+</div>
 
+{/* Contenedor derecho: Contador y Lista de Pujas */}
+<div className="flex flex-col w-1/2 space-y-4 h-full">
+  {/* Contador de la Subasta */}
+  <div className="h-40 bg-gray-200 rounded-lg shadow-md flex flex-col justify-center">
+    <ContadorInfo id={Number(id)} />
+  </div>
 
-            {/* Lista de Pujas */}
-            <ListaPujas id = {Number(id)}/>
-          </div>
-        </div>
+  {/* Lista de Pujas */}
+  <div className="flex flex-col flex-grow bg-white border rounded-md p-4 overflow-auto">
+    <ListaPujas id={Number(id)} />
+  </div>
+</div>
+</div>
       </div>
     </div>
   );
