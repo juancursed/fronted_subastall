@@ -8,7 +8,7 @@ import { SubastaPage } from './components/SubastaPage/SubastaPage'
 import { AuthProvider } from './types/AuthContext';
 import  CrearSubasta  from './components/Pages/CrearSubasta/CrearSubasta';
 import EditSubasta from './components/Pages/CrearSubasta/EditSubasta';
-import AuctionRoom from './components/Pages/CrearSubasta/AuctionRoom';
+import AuctionRoom from './components/Pages/AuctionRoom';
 
 function App() {
   return (

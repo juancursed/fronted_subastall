@@ -13,7 +13,7 @@ export const fetchSubastas = async () => {
     }
 };
 
-export const getSubastaById = async (id: number) => {
+export const getSubastaById = async (id: Number) => {
   try {
     const response = await fetch(`http://localhost:8080/api/subasta/${id}`);
     if (!response.ok) throw new Error("Error al obtener datos de la subasta");
@@ -21,6 +21,39 @@ export const getSubastaById = async (id: number) => {
    } catch (error) {
     console.error(error);
   }
+}
+
+
+export const consultarOfertas = async (id: Number) =>{
+  const API_URL = `http://localhost:8080/api/ofertas/subasta/${id}`
+  
+  try{
+    const response = await axios.get((API_URL));
+    
+    console.log(response.data)
+    return await response.data
+  }catch(error){
+    console.error(error);
+  }
+}
+
+export const consultarMejorOferta = async (id: number) => {
+  const API_URL = `http://localhost:8080/api/ofertas/subasta/mejor/${id}`;
+
+  try {
+    const response = await axios.get((API_URL));
+    
+    //if (!response.ok) {
+    //  throw new Error("Error al obtener las subastas");
+    //}
+
+
+    return await response.data; 
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+
 }
 
 export const fetchUserSubastas = async (token: string) => {
@@ -43,29 +76,7 @@ export const fetchUserSubastas = async (token: string) => {
     }
 }
 
-export const consultarMejorOferta = async (id: number, token :string) => {
-  const API_URL = `http://localhost:8080/api/subasta/mejor/${id}`;
 
-  try {
-    const response = await fetch(API_URL, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error("Error al obtener las subastas");
-    }
-
-    console.log(response.json());
-    return await response.json(); 
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-
-}
 
 
 export const addSubasta = async (subasta: object, token : string) => {
