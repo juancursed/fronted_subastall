@@ -8,6 +8,7 @@ import { SubastaPage } from './components/SubastaPage/SubastaPage'
 import { AuthProvider } from './types/AuthContext';
 import  CrearSubasta  from './components/Pages/CrearSubasta/CrearSubasta';
 import EditSubasta from './components/Pages/CrearSubasta/EditSubasta';
+import AuctionRoom from './components/Pages/CrearSubasta/AuctionRoom';
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
           <Route path="/addSubasta" element={<CrearSubasta />} />
 
           <Route path="/editSubasta/:id" element={<EditSubasta />} />
+
+          <Route path='/subasta/:id' element={<AuctionRoom />} />
 
 
         </Routes>

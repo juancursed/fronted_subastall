@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiEdit } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 interface subastaCardProps {
@@ -38,6 +39,7 @@ export const SubastaCard: React.FC<subastaCardProps> = ({
   showEdit = false,
   onBid,
 }) => {
+  const navigate = useNavigate();
 
   const API_BASE_URL = "http://127.0.0.1:8080/api/subasta/foto/";
 
@@ -58,6 +60,9 @@ export const SubastaCard: React.FC<subastaCardProps> = ({
     return `${minutes} minutos restantes`;
   };
 
+  const toAuctionRoom = () => {
+    navigate(`/subasta/${id}`);
+  }
  
 
   const timeRemaining = getTimeRemaining();
@@ -100,7 +105,7 @@ export const SubastaCard: React.FC<subastaCardProps> = ({
 
 
       <button
-        onClick={onBid}
+        onClick={toAuctionRoom}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
       >
         Puja ahora

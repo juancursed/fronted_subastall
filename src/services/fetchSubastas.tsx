@@ -43,13 +43,35 @@ export const fetchUserSubastas = async (token: string) => {
     }
 }
 
+export const consultarMejorOferta = async (id: number, token :string) => {
+  const API_URL = `http://localhost:8080/api/subasta/mejor/${id}`;
+
+  try {
+    const response = await fetch(API_URL, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Error al obtener las subastas");
+    }
+
+    console.log(response.json());
+    return await response.json(); 
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+
+}
+
 
 export const addSubasta = async (subasta: object, token : string) => {
     const API_URL = 'http://localhost:8080/api/subasta/agregar';
 
     try {
-        // Log para ver el objeto enviado
-        console.log(JSON.stringify(subasta));
 
         // Realiza la solicitud POST con axios
         const response = await axios.post(API_URL, subasta, {

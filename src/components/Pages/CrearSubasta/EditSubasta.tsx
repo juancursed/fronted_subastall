@@ -131,7 +131,7 @@ const EditSubasta = () => {
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
                     required
-                    className="w-full p-2"
+                    className="w-full bg-[#FFF] text-black rounded-lg p-2 shadow-inner"
                   />
                 </div>
     
@@ -141,7 +141,7 @@ const EditSubasta = () => {
                     value={descripcion}
                     onChange={(e) => setDescripcion(e.target.value)}
                     required
-                    className="w-full p-2"
+                    className="w-full bg-[#FFF] text-black rounded-lg p-2 shadow-inner"
                   />
                 </div>
     
@@ -152,7 +152,7 @@ const EditSubasta = () => {
                     value={precioInicial}
                     onChange={(e) => setPrecioInicial(Number(e.target.value))}
                     required
-                    className="w-full p-2"
+                    className="w-full bg-[#FFF] text-black rounded-lg p-2 shadow-inner"
                   />
                 </div>
     
@@ -164,7 +164,7 @@ const EditSubasta = () => {
                       value={fechaCierre}
                       onChange={(e) => setFechaCierre(e.target.value)}
                       required
-                      className="w-full p-2"
+                      className="w-full bg-[#FFF] text-black rounded-lg p-2 shadow-inner"
                     />
                   </div>
                   <div>
@@ -174,7 +174,7 @@ const EditSubasta = () => {
                       value={horaCierre}
                       onChange={(e) => setHoraCierre(e.target.value)}
                       required
-                      className="w-full p-2"
+                      className="w-full bg-[#FFF] text-black rounded-lg p-2 shadow-inner"
                     />
                   </div>
                 </div>
