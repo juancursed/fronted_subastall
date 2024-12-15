@@ -1,5 +1,6 @@
 import axios, { AxiosError} from 'axios';
 
+
 export const fetchSubastas = async () => {
     const API_URL = 'http://localhost:8080/api/subasta/recomendaciones'; 
     try {
@@ -10,8 +11,17 @@ export const fetchSubastas = async () => {
       console.error('Error en fetchSubastas:', error);
       throw error;
     }
-  };
-  
+};
+
+export const getSubastaById = async (id: number) => {
+  try {
+    const response = await fetch(`http://localhost:8080/api/subasta/${id}`);
+    if (!response.ok) throw new Error("Error al obtener datos de la subasta");
+    return await response.json();
+   } catch (error) {
+    console.error(error);
+  }
+}
 
 export const fetchUserSubastas = async (token: string) => {
     const API_URL = 'http://localhost:8080/api/subasta/usuario';
@@ -57,4 +67,19 @@ export const addSubasta = async (subasta: object, token : string) => {
         //throw error.response?.data || new Error('Error al realizar la solicitud');
     }
 }
+
+export const updateSubasta = async (id: string | number, subastaData: any, token :string) => {
+  try {
+      const response = await axios.put(`http://localhost:8080/api/subasta/${id}`, subastaData, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data;
+  } catch (error) {
+      console.error("Error al actualizar la subasta", error);
+      throw error;
+  }
+};
 
