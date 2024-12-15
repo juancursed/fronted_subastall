@@ -47,11 +47,12 @@ export const SubastaPage: React.FC = () => {
             <div className="pt-16 flex max-w-7xl mx-auto">
                 {/* Panel lateral de filtros */}
                 {showFilters && (
+                    
                     <aside className="bg-white w-64 p-4 shadow-lg">
                         <h2 className="text-lg font-bold">Filtrar por</h2>
                         <div className="mt-4 space-y-4">
                             {/* Filtros */}
-                            <div>
+                            <div className="FFF">
                                 <label className="block text-sm font-medium text-gray-700">
                                     Categoría
                                 </label>
@@ -87,7 +88,7 @@ export const SubastaPage: React.FC = () => {
 
 
                 {/* Botón para ocultar/mostrar filtros */}
-                <div className="bg-gray-200 p-2">
+                <div className="bg-gray-100 p-2">
                     <button
                         className="bg-red-600 text-white px-4 py-2 rounded"
                         onClick={() => setShowFilters(!showFilters)}
@@ -122,6 +123,7 @@ export const SubastaPage: React.FC = () => {
                                 estado={subasta.estado}
                                 usuario_subasta={subasta.usuario_subasta}
                                 label="Ultima puja"
+                                showEdit = {true}
                                 onBid={() => console.log(`Puja realizada en ${subasta.nombre}`)}
                             />
                         ))
