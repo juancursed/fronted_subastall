@@ -68,9 +68,11 @@ export const addSubasta = async (subasta: object, token : string) => {
     }
 }
 
-export const updateSubasta = async (id: string | number, subastaData: any, token :string) => {
+export const updateSubasta = async (id: number, subastaData: any, token :string) => {
+  const url = `http://localhost:8080/api/subasta/${id}`;
+  console.log(token);
   try {
-      const response = await axios.put(`http://localhost:8080/api/subasta/${id}`, subastaData, {
+      const response = await axios.put(url, subastaData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',

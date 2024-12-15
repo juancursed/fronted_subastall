@@ -20,7 +20,6 @@ const EditSubasta = () => {
     const [token, setToken] = useState("");
     const API_BASE_URL = "http://127.0.0.1:8080/api/subasta/foto/";
 
-
     useEffect(() => {
         const fetchSubasta = async () => {
             try {
@@ -28,12 +27,12 @@ const EditSubasta = () => {
                 const token = localStorage.getItem("authToken"); 
                 token?.toString();
 
-                if (!token) {
+                if (!token || token == "") {
                     alert("No estás autenticado.");
                     navigate("/login");
                     return;
                 }
-
+                setToken(token);
                 setNombre(data.nombre || "");
                 setDescripcion(data.descripcion || "");
                 setPrecioInicial(data.precioInicial || "");
@@ -62,14 +61,17 @@ const EditSubasta = () => {
     // Función para manejar la actualización del formulario
     const manejarFormulario = async (e: React.FormEvent) => {
         e.preventDefault();
+        const convertirFecha = (fecha: string, hora: string): string => {
+          return `${fecha}T${hora}:00`;
+        };
 
+        // Construye el objeto de subasta
         const updatedData = {
-            nombre,
-            descripcion,
-            precioInicial,
-            fechaCierre,
-            horaCierre,
-            fotos,
+          nombre: nombre,
+          descripcion: descripcion,
+          precioInicial: precioInicial,
+          estado: 'ACTIVA',
+          fechaCierre: convertirFecha(fechaCierre, horaCierre),
         };
 
         try {
