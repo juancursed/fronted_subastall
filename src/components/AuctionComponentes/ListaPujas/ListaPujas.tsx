@@ -1,13 +1,16 @@
 import { consultarOfertas } from "../../../services/fetchSubastas";
 import { useEffect, useState } from "react";
+import { addPuja } from "../../../services/fetchSubastas";
 
 interface ListaPujasProps {
   id: number;
+  token :string,
 }
 
-const ListaPujas: React.FC<ListaPujasProps> = ({ id }) => {
+const ListaPujas: React.FC<ListaPujasProps> = ({ id, token }) => {
   const [data, setData] = useState<any[]>([]); // Cambiado a array para manejar las pujas
   const [puja, setPuja] = useState<string>(""); // Estado para el input de la nueva puja
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +52,7 @@ const ListaPujas: React.FC<ListaPujasProps> = ({ id }) => {
           onChange={(e) => setPuja(e.target.value)}
           className="flex-1 px-3 py-2 border rounded-md"
         />
-        <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+        <button className="bg-blue-600 text-white px-4 py-2 rounded-md font-bold hover:bg-blue-700 transition " onClick={async () => await addPuja(id, Number(puja), token)}>
           Hacer una Puja
         </button>
       </div>

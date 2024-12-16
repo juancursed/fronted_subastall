@@ -51,11 +51,14 @@ const ContadorInfo: React.FC<ContadorInfoProps> = ({id}) => {
   if (!subastaData) {
     return <div>Cargando...</div>;
   }
+  if (Object.keys(subastaData).length === 0) {
+    return <div>Aun no hay una oferta</div>;
+  }
 
   return (
-    <div className="flex flex-row items-center justify-between bg-gray-200 h-full w-full p-4 rounded-md shadow-lg">
+    <div className="flex flex-row items-center justify-between  h-full w-full p-4 font-bold rounded-md shadow-lg">
     <img
-      src="/default-profile.png" // Cambiar por URL dinámica si aplica
+      src="" // Cambiar por URL dinámica si aplica
       alt="Perfil"
       className="w-16 h-16 rounded-full object-cover mr-4" // Tamaño ajustado
     />

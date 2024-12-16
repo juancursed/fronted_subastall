@@ -1,4 +1,4 @@
-import axios, { AxiosError} from 'axios';
+import axios from 'axios';
 
 
 export const fetchSubastas = async () => {
@@ -30,7 +30,6 @@ export const consultarOfertas = async (id: Number) =>{
   try{
     const response = await axios.get((API_URL));
     
-    console.log(response.data)
     return await response.data
   }catch(error){
     console.error(error);
@@ -55,6 +54,31 @@ export const consultarMejorOferta = async (id: number) => {
   }
 
 }
+
+export const addPuja = async (id: number, monto: number, token: string) => {
+  console.log("TOKEN EN FETCH: ", token)
+  
+  const API_URL = "http://localhost:8080/api/ofertas/crear"
+  try {
+    const response = await axios.post(API_URL, {
+      subasta: id,
+      monto: monto,
+    }, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    
+    console.log(response)
+    return response.data;
+    
+    }catch (error) {
+      console.error(error);
+      return [];
+  }
+}
+
 
 export const fetchUserSubastas = async (token: string) => {
     const API_URL = 'http://localhost:8080/api/subasta/usuario';

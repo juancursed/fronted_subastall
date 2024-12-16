@@ -7,7 +7,7 @@ import { format } from "date-fns";
 import ContadorInfo from "../AuctionComponentes/ContadorInfo/ContadorInfo";
 import ListaPujas from "../AuctionComponentes/ListaPujas/ListaPujas";
 
-const SubastaPage: React.FC = () => {
+const AuctionRoom: React.FC = () => {
   const { id } = useParams(); // Obtener el ID desde la URL
   const navigate = useNavigate(); // Para redirigir después de editar
 
@@ -17,14 +17,30 @@ const SubastaPage: React.FC = () => {
   const [fechaCierre, setFechaCierre] = useState("");
   const [horaCierre, setHoraCierre] = useState("");
   const [fotos, setFotos] = useState("");
+  const [token, setToken] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  
 
   const API_BASE_URL = "http://127.0.0.1:8080/api/subasta/foto/";
+
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken"); // Obtener el token desde localStorage
+    if (authToken) {
+      setToken(authToken); // Actualiza el estado del token
+    } else {
+      setError("No estás autenticado."); // Muestra un error si no hay token
+    }
+    
+  }, []);
+
 
   useEffect(() => {
     const fetchSubasta = async () => {
       try {
         const data = await getSubastaById(Number(id));
 
+      
 
         setNombre(data.nombre || "");
         setDescripcion(data.descripcion || "");
@@ -53,11 +69,6 @@ const SubastaPage: React.FC = () => {
 
   //----------IGNORAR----------------
   const [subastaData, setSubastaData] = useState({
-    producto: {
-      nombre: "Producto Ejemplo",
-      descripcion: "Descripción breve del producto",
-      imagen: "", // URL de la imagen
-    },
     mensajesChat: [
       { usuario: "Usuario1", mensaje: "¡Hola!" },
       { usuario: "Usuario2", mensaje: "$1000" },
@@ -80,6 +91,7 @@ const SubastaPage: React.FC = () => {
     }
   };
 
+
   return (
     <div className="h-screen flex flex-col bg-gray-100">
       <div className="fixed top-0 left-0 w-full bg-red-800 text-white shadow-md z-50">
@@ -89,64 +101,65 @@ const SubastaPage: React.FC = () => {
       {/* Contenedor principal */}
       <div className="flex flex-col flex-grow mt-16">
 
-      <div className="flex justify-between p-4 space-x-4 h-full">
+        <div className="flex justify-between p-4 space-x-4 h-full">
 
-{/* Contenedor izquierdo: ProductInfo y Chat */}
-<div className="flex flex-col w-1/2 space-y-4 h-full">
-  {/* ProductInfo */}
-  <div className="bg-white rounded-lg shadow-md flex-shrink-0">
-    <ProductInfo
-      nombre={nombre}
-      descripcion={descripcion}
-      imagen={`${API_BASE_URL}${fotos[0]}`}
-    />
-  </div>
+          {/* Contenedor izquierdo: ProductInfo y Chat */}
+          <div className="flex flex-col w-1/2 space-y-4 h-full">
+            {/* ProductInfo */}
+            <div className="bg-white rounded-lg shadow-md flex-shrink-0">
+              <ProductInfo
+                nombre={nombre}
+                descripcion={descripcion}
+                imagen={`${API_BASE_URL}${fotos[0]}`}
+              />
+            </div>
 
-  {/* Chat Público */}
-  <div className="flex flex-col flex-grow bg-white border rounded-md p-4 overflow-hidden">
-    <h2 className="text-xl font-bold mb-2">Chat Público</h2>
-    <div className="flex-1 overflow-auto space-y-2">
-      {subastaData.mensajesChat.map((msg, index) => (
-        <p key={index} className="text-gray-700">
-          <span className="font-bold">{msg.usuario}: </span>
-          {msg.mensaje}
-        </p>
-      ))}
-    </div>
-    <div className="mt-2 flex">
-      <input
-        type="text"
-        placeholder="Escribe un mensaje..."
-        value={nuevoMensaje}
-        onChange={(e) => setNuevoMensaje(e.target.value)}
-        className="w-full p-2 border rounded-l-md"
-      />
-      <button
-        onClick={enviarMensaje}
-        className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700"
-      >
-        Enviar
-      </button>
-    </div>
-  </div>
-</div>
+            {/* Chat Público */}
+            <div className="flex flex-col flex-grow bg-white border rounded-md p-4 font-bold overflow-hidden">
+              <h2 className="text-xl font-bold mb-2">Chat Público</h2>
+              <div className="flex-1 overflow-auto space-y-2">
+                {subastaData.mensajesChat.map((msg, index) => (
+                  <p key={index} className="text-gray-700">
+                    <span className="font-bold">{msg.usuario}: </span>
+                    {msg.mensaje}
+                  </p>
+                ))}
+              </div>
+              <div className="mt-2 flex">
+                <input
+                  type="text"
+                  placeholder="Escribe un mensaje..."
+                  value={nuevoMensaje}
+                  onChange={(e) => setNuevoMensaje(e.target.value)}
+                  className="w-full p-2 border rounded-l-md"
+                />
+                <button
+                  onClick={enviarMensaje}
+                  className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700"
+                >
+                  Enviar
+                </button>
+              </div>
+            </div>
+          </div>
 
-{/* Contenedor derecho: Contador y Lista de Pujas */}
-<div className="flex flex-col w-1/2 space-y-4 h-full">
-  {/* Contador de la Subasta */}
-  <div className="h-40 bg-gray-200 rounded-lg shadow-md flex flex-col justify-center">
-    <ContadorInfo id={Number(id)} />
-  </div>
+          {/* Contenedor derecho: Contador y Lista de Pujas */}
+          <div className="flex flex-col w-1/2 space-y-4 h-full">
+            {/* Contador de la Subasta */}
+            <div className="h-40 bg-white rounded-lg shadow-md flex flex-col justify-center">
+              <ContadorInfo id={Number(id)} />
+            </div>
 
-  {/* Lista de Pujas */}
-  <div className="flex flex-col flex-grow bg-white border rounded-md p-4 overflow-auto">
-    <ListaPujas id={Number(id)} />
-  </div>
-</div>
-</div>
+            {/* Lista de Pujas */}
+            <div className="flex flex-col flex-grow bg-white border rounded-md p-4 overflow-auto">
+              <ListaPujas id={Number(id)} token = {token}/>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default SubastaPage;
+
+export default AuctionRoom
