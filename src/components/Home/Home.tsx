@@ -1,14 +1,16 @@
 import { Navbar } from "../Navbar/Navbar";
 import CarruselSubastas from '../CarruselSubastas/CarruselSubasta';
-//import { useNavigate } from 'react-router-dom';  
+import { CATEGORIAS_PALABRAS_RESERVADAS } from "../../constants/categorias";
+import { useNavigate } from 'react-router-dom';  
+
 
 export function HomePage() {
-  //const navigate = useNavigate(); // Usamos el hook de navegación
-
-  //const handleButtonClick = () => {
-    // Redirigimos a la página de subastas
-  //  navigate('/subastas');
-  //};
+  const navigate = useNavigate();
+  
+  const handleCategoryClick = (category: string) => {
+    // Navegar a la página de categorías y pasar la categoría seleccionada
+    navigate(`/categoria/${category}`);
+  };
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -30,21 +32,6 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Categorías Destacadas */}
-      <section className="container mx-auto py-12">
-        <h2 className="text-2xl font-bold text-center mb-8">Explora Categorías</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {["Electrónica", "Hogar", "Ropa", "Deportes"].map((category) => (
-            <div
-              key={category}
-              className="bg-white shadow-md rounded-lg p-6 text-center hover:shadow-lg"
-            >
-              <h3 className="text-lg font-medium">{category}</h3>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Productos en Subasta - Carrusel */}
       <section className="bg-white py-12">
         <div className="container mx-auto">
@@ -54,6 +41,24 @@ export function HomePage() {
           <CarruselSubastas />
         </div>
       </section>
+
+      {/* Categorías Destacadas */}
+      <section className="container mx-auto py-12">
+        <h2 className="text-2xl font-bold text-center mb-8">Explora Categorías</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {Object.keys(CATEGORIAS_PALABRAS_RESERVADAS).map((category) => (
+          <div
+            key={category}
+            className="bg-white shadow-md rounded-lg p-6 text-center hover:shadow-lg cursor-pointer"
+            onClick={() => handleCategoryClick(category)}
+          >
+            <h3 className="text-lg font-medium">{category}</h3>
+          </div>
+        ))}
+      </div>
+      </section>
+
+      
 
       {/* Footer */}
       <footer className="bg-[#5E1616] text-white py-8">

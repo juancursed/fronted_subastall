@@ -39,7 +39,10 @@ export interface Subasta {
       country: string;
   }
 
-  
+}
 
+export interface Puja {
+    subastaId: number;
+    monto: number;
 }
 

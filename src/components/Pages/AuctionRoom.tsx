@@ -90,8 +90,7 @@ const AuctionRoom: React.FC = () => {
       setNuevoMensaje("");
     }
   };
-
-
+  
   return (
     <div className="h-screen flex flex-col bg-gray-100">
       <div className="fixed top-0 left-0 w-full bg-red-800 text-white shadow-md z-50">
@@ -110,7 +109,7 @@ const AuctionRoom: React.FC = () => {
               <ProductInfo
                 nombre={nombre}
                 descripcion={descripcion}
-                imagen={`${API_BASE_URL}${fotos[0]}`}
+                imagen={fotos?.length > 0 ? `${API_BASE_URL}${fotos[0]}` : "default_image.jpg"}
               />
             </div>
 
@@ -152,7 +151,7 @@ const AuctionRoom: React.FC = () => {
 
             {/* Lista de Pujas */}
             <div className="flex flex-col flex-grow bg-white border rounded-md p-4 overflow-auto">
-              <ListaPujas id={Number(id)} token = {token}/>
+              {token && <ListaPujas id={Number(id)} token={token} />}
             </div>
           </div>
         </div>

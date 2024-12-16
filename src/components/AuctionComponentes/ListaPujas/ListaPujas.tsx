@@ -4,19 +4,33 @@ import { addPuja } from "../../../services/fetchSubastas";
 
 interface ListaPujasProps {
   id: number;
-  token :string,
+  token: string;
 }
 
 const ListaPujas: React.FC<ListaPujasProps> = ({ id, token }) => {
   const [data, setData] = useState<any[]>([]); // Cambiado a array para manejar las pujas
   const [puja, setPuja] = useState<string>(""); // Estado para el input de la nueva puja
 
+  // Función para obtener las pujas
+  const fetchData = async () => {
+    const result = await consultarOfertas(id);
+    setData(result);
+  };
 
+  // Función para manejar una nueva puja
+  const handlerPuja = async () => {
+
+    if (!puja || isNaN(Number(puja)) || Number(puja) <= 0) {
+      alert("Por favor, ingrese un monto válido.");
+      return;
+    }
+
+    await addPuja(Number(id), Number(puja), token);
+    fetchData(); // Actualiza las pujas después de agregar una nueva
+  };
+
+  // Ejecuta fetchData al montar el componente o si el id cambia
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await consultarOfertas(id);
-      setData(result);
-    };
     fetchData();
   }, [id]);
 
@@ -52,7 +66,10 @@ const ListaPujas: React.FC<ListaPujasProps> = ({ id, token }) => {
           onChange={(e) => setPuja(e.target.value)}
           className="flex-1 px-3 py-2 border rounded-md"
         />
-        <button className="bg-blue-600 text-white px-4 py-2 rounded-md font-bold hover:bg-blue-700 transition " onClick={async () => await addPuja(id, Number(puja), token)}>
+        <button
+          className="bg-blue-600 text-white px-4 py-2 rounded-md font-bold hover:bg-blue-700 transition"
+          onClick={handlerPuja}
+        >
           Hacer una Puja
         </button>
       </div>

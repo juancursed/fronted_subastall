@@ -56,13 +56,13 @@ export const consultarMejorOferta = async (id: number) => {
 }
 
 export const addPuja = async (id: number, monto: number, token: string) => {
-  console.log("TOKEN EN FETCH: ", token)
   
+
   const API_URL = "http://localhost:8080/api/ofertas/crear"
   try {
     const response = await axios.post(API_URL, {
-      subasta: id,
-      monto: monto,
+      subastaId: id,
+      monto: monto
     }, {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -70,13 +70,16 @@ export const addPuja = async (id: number, monto: number, token: string) => {
       },
     });
     
-    console.log(response)
     return response.data;
     
     }catch (error) {
-      console.error(error);
-      return [];
-  }
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        alert("Sesión expirada. Por favor, inicia sesión nuevamente.");
+        return;
+      }
+      console.error("Error en addPuja:", error);
+      throw error;
+    }
 }
 
 
