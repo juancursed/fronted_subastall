@@ -9,6 +9,7 @@ import { AuthProvider } from './types/AuthContext';
 import  CrearSubasta  from './components/Pages/CrearSubasta/CrearSubasta';
 import EditSubasta from './components/Pages/CrearSubasta/EditSubasta';
 import AuctionRoom from './components/Pages/AuctionRoom';
+import SearchSubasta from './components/Pages/search';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
 
           <Route path='/subasta/:id' element={<AuctionRoom />} />
 
+          <Route path='search/:query' element={<SearchSubasta />} />
 
         </Routes>
       </BrowserRouter>

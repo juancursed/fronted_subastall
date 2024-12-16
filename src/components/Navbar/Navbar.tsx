@@ -7,12 +7,20 @@ import { ButtonProfile } from '../ButtonsProfile/ButtonProfile';
 
 export const Navbar: React.FC = () => {
   const navigate = useNavigate();  // Usamos el hook de navegación para redirigir
-  //const { token, logout } = useAuth();
   const { token } = useAuth();
+  const [query, setQuery] = React.useState<string>('');
 
   // Función para manejar el inicio de sesión
   const handleLogin = () => {
     navigate('/login');  // Redirigir a la página de login
+  };
+
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      // Redirige a la página de búsqueda con la query
+      navigate(`/search/${encodeURIComponent(query)}`);
+    }
   };
 
   const toAddSubasta = () => {
@@ -42,6 +50,9 @@ export const Navbar: React.FC = () => {
         <div className="flex-grow mx-4 hidden sm:block">
           <input
             type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)} // Actualiza el estado local
+                              onKeyDown={handleKeyDown}
             placeholder="Buscar sobre artículos del hogar"
             className="w-full px-4 py-2 rounded-full text-gray-800 focus:outline-none focus:ring focus:ring-yellow-600 shadow-sm"
           />
@@ -88,3 +99,5 @@ export const Navbar: React.FC = () => {
     </nav>
   );
 };
+
+export default Navbar;
