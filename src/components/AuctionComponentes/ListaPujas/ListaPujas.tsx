@@ -1,6 +1,5 @@
-import { consultarOfertas } from "../../../services/fetchSubastas";
 import { useEffect, useState } from "react";
-import { addPuja } from "../../../services/fetchSubastas";
+import { addPuja, consultarOfertas } from "../../../services/fetchSubastas";
 
 interface ListaPujasProps {
   id: number;
@@ -14,6 +13,7 @@ const ListaPujas: React.FC<ListaPujasProps> = ({ id, token }) => {
   // Función para obtener las pujas
   const fetchData = async () => {
     const result = await consultarOfertas(id);
+    console.log(result)
     setData(result);
   };
 
@@ -25,7 +25,7 @@ const ListaPujas: React.FC<ListaPujasProps> = ({ id, token }) => {
       return;
     }
 
-    await addPuja(Number(id), Number(puja), token);
+    addPuja(Number(id), Number(puja), token);
     fetchData(); // Actualiza las pujas después de agregar una nueva
   };
 
