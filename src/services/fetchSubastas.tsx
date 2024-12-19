@@ -25,12 +25,11 @@ export const getSubastaById = async (id: Number) => {
 
 
 export const consultarOfertas = async (id: Number) =>{
-  const API_URL = `http://localhost:8080/api/ofertas/subasta/${id}`
   
   try{
-    const response = await axios.get((API_URL));
-    
-    return await response.data
+    const response = await fetch(`http://localhost:8080/api/ofertas/subasta/${id}`);
+    // if (!response.ok) throw new Error("Error al obtener datos de la subasta");
+    return response.json();
   }catch(error){
     console.error(error);
   }
@@ -58,28 +57,44 @@ export const consultarMejorOferta = async (id: number) => {
 export const addPuja = async (id: number, monto: number, token: string) => {
   
 
-  const API_URL = "http://localhost:8080/api/ofertas/crear"
+  // const API_URL = "http://localhost:8080/api/ofertas/crear"
   try {
-    const response = await axios.post(API_URL, {
-      subastaId: id,
-      monto: monto
-    }, {
+    const response = await fetch(`http://localhost:8080/api/ofertas/crear`, {
+      method: 'POST', // Método HTTP
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        subastaId: id, // ID de la subasta
+        monto: monto   // Monto de la oferta
+      })
     });
-    
-    return response.data;
-    
-    }catch (error) {
-      if (axios.isAxiosError(error) && error.response?.status === 401) {
-        alert("Sesión expirada. Por favor, inicia sesión nuevamente.");
-        return;
-      }
-      console.error("Error en addPuja:", error);
-      throw error;
+  
+    // Manejo específico del error 403
+    if (response.status === 403) {
+      const errorText = await response.text();
+      console.error("Error:", errorText);
+      alert("La oferta debe ser mayor al precio actual.");
+      return; // Detener la ejecución aquí si hay un error
     }
+  
+    // Manejo de otros errores HTTP
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
+    }
+  
+    // Si la solicitud es exitosa, procesar la respuesta
+    const data = await response.json();
+    console.log("Oferta enviada con éxito:", data);
+    alert("Oferta enviada con éxito:");
+    return data;
+  
+  } catch (error) {
+    console.error("Error al enviar la oferta:", error.message);
+    alert("Ocurrió un error inesperado. Inténtalo de nuevo más tarde.");
+  }
+  
 }
 
 
