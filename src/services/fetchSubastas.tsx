@@ -91,7 +91,7 @@ export const addPuja = async (id: number, monto: number, token: string) => {
     return data;
   
   } catch (error) {
-    console.error("Error al enviar la oferta:", error.message);
+    console.error("Error al enviar la oferta:", error);
     alert("Ocurrió un error inesperado. Inténtalo de nuevo más tarde.");
   }
   
